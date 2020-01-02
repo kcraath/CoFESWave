@@ -5,6 +5,10 @@
 ############################
 
 # All the libraries
+## You should make your repo public so other people can download this package.
+## Or open this package and click on the "Build" button near the top-right corner of RStudio,
+## then click on the "Install and Restart" button.
+devtools::install_github("yifanzhang0842/CoFESWave")
 library(CoFESWave)
 
 
