@@ -6,6 +6,8 @@
 ## I now use CoFESWave.whatwhat, so when the names are decided,
 ## it would be easy to replace them with new names.
 
+devtools::install_github("kcraath/CoFESWave", auth_token = "ae2a03370845f12f616bed5b214903c3e56e68ae")
+library(CoFESWave)
 
 library(WaveletComp)
 library(tictoc)
