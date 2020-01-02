@@ -18,8 +18,8 @@ WaveL2E <- function(x, date = NULL, block = 1, base_plot = TRUE,
 { #Maybe we should add in a static option (if static - length of Data, or we are starting at index =2 so (length - 1))
   #For this one w should also just have a table for the variance and the weight - only one value each on for each block
 
-  library(latex2exp)
-  topl_colors <- colorRampPalette(c("#64d8cb","#26a69a", "#90a4ae","#5f5fc4", "#283593"))
+  # library(latex2exp)
+  topl_colors <- grDevices:::colorRampPalette(c("#64d8cb","#26a69a", "#90a4ae","#5f5fc4", "#283593"))
 
   #date = NULL; block = 1; base_plot = TRUE; L2E = TRUE; Chi_square = TRUE; # make test and debug easier.
   # x = Data[,1]; date = date_Sector;
@@ -41,15 +41,15 @@ WaveL2E <- function(x, date = NULL, block = 1, base_plot = TRUE,
 
   ## 0.1. Base Wavelet Transformation
   ## 0.1.1. transform
-  my.w_original <- WaveletComp::analyze.wavelet(Data_raw, "x",
+  my.w_original <- CoFESWave.Transform(Data_raw, "x",
                                                 loess.span = 0.0, make.pval = F, verbose = F ,
                                                 n.sim = 10000, upperPeriod = length(x))
-  recon_org0 <- WaveletComp::reconstruct(my.w_original, plot.waves = FALSE, lwd = c(1,2),
+  recon_org0 <- CoFESWave.reconstruct(my.w_original, plot.waves = FALSE, lwd = c(1,2),
                                          legend.coords = "topright",plot.rec = FALSE, verbose = F)
 
   ## 0.1.2. plot before WaveL2E
   if (base_plot) {
-    WaveletComp::wt.image(my.w_original, periodlab = " ",timelab = "  " , main = " ",
+    CoFESWave.image(my.w_original, periodlab = " ",timelab = "  " , main = " ",
                           legend.params = list(lab = "wavelet power levels", mar = 5.1, cex = 6, n.ticks = 10),
                           color.key = "quantile", lwd = 2, plot.ridge = FALSE, color.palette = "topl_colors(n.levels)",
                           show.date = Signal_date) #"topl_colors(n.levels)"
@@ -184,7 +184,7 @@ WaveL2E <- function(x, date = NULL, block = 1, base_plot = TRUE,
   ## 3.1. L2E = TRUE
   if (L2E) {
     # 1. Wavelet Plot
-    WaveletComp::wt.image(my.w1, periodlab = " ",timelab = "  " , main = " ",
+    CoFESWave.image(my.w1, periodlab = " ",timelab = "  " , main = " ",
                           legend.params = list(lab = "wavelet power levels", mar = 5.1, cex = 6, n.ticks = 10),
                           color.key = "quantile", lwd = 2, plot.ridge = FALSE, color.palette = "topl_colors(n.levels)",
                           show.date = Signal_date)
@@ -192,7 +192,7 @@ WaveL2E <- function(x, date = NULL, block = 1, base_plot = TRUE,
           xlab = " ", ylab = " ", cex.lab = 1.3)
 
     # 2. Reconstructed Time-Seires
-    recon_org1 <- WaveletComp::reconstruct(my.w1, plot.waves = FALSE, lwd = c(1,2),
+    recon_org1 <- CoFESWave.reconstruct(my.w1, plot.waves = FALSE, lwd = c(1,2),
                                            legend.coords = "topright",plot.rec = FALSE, verbose = F)
 
     # 3. Percentage of Total Volume
@@ -205,7 +205,7 @@ WaveL2E <- function(x, date = NULL, block = 1, base_plot = TRUE,
   ## 3.2. Chi_square = TRUE
   if (Chi_square) {
     # 1. Wavelet Plot
-    WaveletComp::wt.image(my.w2, periodlab = " ",timelab = "  " , main = " ",
+    CoFESWave.image(my.w2, periodlab = " ",timelab = "  " , main = " ",
                           legend.params = list(lab = "wavelet power levels", mar = 5.1, cex = 6, n.ticks = 10),
                           color.key = "quantile", lwd = 2, plot.ridge = FALSE, color.palette = "topl_colors(n.levels)",
                           show.date = Signal_date)
@@ -213,7 +213,7 @@ WaveL2E <- function(x, date = NULL, block = 1, base_plot = TRUE,
           xlab = " ", ylab = " ", cex.lab = 1.3)
 
     # 2. Reconstructed Time-Seires
-    recon_org2 <- WaveletComp::reconstruct(my.w2, plot.waves = FALSE, lwd = c(1,2),
+    recon_org2 <- CoFESWave.reconstruct(my.w2, plot.waves = FALSE, lwd = c(1,2),
                                            legend.coords = "topright",plot.rec = FALSE, verbose = F)
 
     # 3. Percentage of Total Volume
