@@ -8,7 +8,8 @@
 ## You should make your repo public so other people can download this package.
 ## Or open this package and click on the "Build" button near the top-right corner of RStudio,
 ## then click on the "Install and Restart" button.
-devtools::install_github("yifanzhang0842/CoFESWave")
+remove.packages("CoFESWave")
+devtools::install_github("kcraath/CoFESWave", auth_token = "ae2a03370845f12f616bed5b214903c3e56e68ae")
 library(CoFESWave)
 
 
@@ -447,7 +448,7 @@ ws.type ='ham'
 ws.size =3
 
 # Computation of coherency
-WCO<-CoFEScoherency(Data[,1],Data[,2],low.period=low.period,up.period=up.period,low.fp = 32,up.fp = 128)
+# WCO<-CoFEScoherency(Data[,1],Data[,2],low.period=low.period,up.period=up.period,low.fp = 32,up.fp = 128)
 
 # --- Lower and upper  periods (mid regime)
 lowFP1<-32
