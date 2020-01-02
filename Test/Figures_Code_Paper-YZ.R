@@ -119,7 +119,6 @@ Data <- cbind(CGW[,1], XLE[,1], SPY[,1])
 
 # WaveL2E Analysis of Prices
 
-periodic_waveL2E <- WaveL2E_test(Data[,1], date = date1, block = 1)
 periodic_waveL2E <- WaveL2E(Data[,1], date = date1, block = 1)
 periodic_waveL2E_2 <- WaveL2E(Data[,2], date= date1, block = 1)
 periodic_waveL2E_3 <- WaveL2E(Data[,3], date= date1, block = 1)
