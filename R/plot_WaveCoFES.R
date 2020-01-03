@@ -132,7 +132,7 @@ plot.CoFESWaveWCO <- function(Coherency.Object,
                           ybottom = c(-pi,-pi/2,0,pi/2),
                           xright = rep(tail(date_at,1),4)+ max(date_at),
                           ytop= c(-pi/2,0,pi/2,pi),
-                          col=c('gray50', 'gray70','gray90','lavenderblush3','ghostwhite'),
+                          col=c('gray50', '#8E93CB','#C9CAE6','#E2F6F5','#9EE5DF'),
                           border=NA))
   axis(side=1, at=date_at, lab=date_lab, las=2)
   axis(side=2, at=freq_at, lab=freq_lab, las=1)
