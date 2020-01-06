@@ -67,7 +67,7 @@ require(wavScalogram)
 require(biwavelet)
 
 #Latex expersions
-library(latex2exp)
+# library(latex2exp)
 
 #Latex tables
 library(knitr)

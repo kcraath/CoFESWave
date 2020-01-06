@@ -1,6 +1,5 @@
 #' Title
 #'
-#' @importFrom latex2exp TeX
 #' @param x
 #' @param date
 #' @param block
