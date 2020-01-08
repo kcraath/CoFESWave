@@ -11,7 +11,7 @@
 #' @export
 #'
 #' @examples
-plot.CoFESWaveWCO <- function(Coherency.Object,
+plot_CoFESWaveWCO <- function(Coherency.Object,
                               pE=5,
                               horizons.label = TRUE,
                               low.FP = 32, up.FP = 128)

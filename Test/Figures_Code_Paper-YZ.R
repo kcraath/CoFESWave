@@ -458,7 +458,7 @@ WCO<-CoFEScoherency(Data[,1],Data[,2],low.period=low.period,up.period=up.period,
                     low.fp = lowFP1,up.fp = upFP1, Phase_diff = TRUE, date = date1)
 
 # -------- PLOTS  ----------
-plot.CoFESWaveWCO(WCO,pE=5, horizons.label = FALSE)
+plot_CoFESWaveWCO(WCO,pE=5, horizons.label = FALSE)
 
 
 # Computation of coherency of (x, y)
@@ -466,7 +466,7 @@ WCO_recon<-CoFEScoherency(periodic_waveL2E_2$recon_L2E$series$x.r,
                           periodic_waveL2E$recon_L2E$series$x.r,
                           low.fp = lowFP1,up.fp = upFP1, Phase_diff = TRUE, date = date1)
 
-plot.CoFESWaveWCO(WCO_recon,pE=5, horizons.label = FALSE)
+plot_CoFESWaveWCO(WCO_recon,pE=5, horizons.label = FALSE)
 
 
 # ----- Computation of Partial Coherency of Water , Energy (controlling for SPY) ---- #
@@ -478,7 +478,7 @@ W<-CoFESmpcoherency(X, coher.type='part',index.p=index.p,
                  low.period=low.period,up.period=up.period,
                  low.fp = lowFP1,up.fp = upFP1, Phase_diff = TRUE, date = date1)
 
-plot.CoFESWaveWCO(W,pE=5)
+plot_CoFESWaveWCO(W,pE=5)
 
 ########## Figure 9 ############
 

@@ -1,16 +1,16 @@
-#' Title
+#' WaveL2E is a function
 #'
-#' @param x
-#' @param date
-#' @param block
-#' @param base_plot
-#' @param L2E
-#' @param Chi_square
-#'
-#' @return
+#' @param x a series
+#' @param date a date
+#' @param block number of what
+#' @param base_plot TRUE if plot
+#' @param L2E TRUE if L2E
+#' @param Chi_square TRUE if L2E_chi_square
+#' @return a "whatwhat" object
 #' @export
 #'
 #' @examples
+#' ## WaveL2E(x)
 WaveL2E <- function(x, date = NULL, block = 1, base_plot = TRUE,
                     L2E = TRUE,
                     Chi_square = TRUE)
@@ -18,7 +18,7 @@ WaveL2E <- function(x, date = NULL, block = 1, base_plot = TRUE,
   #For this one w should also just have a table for the variance and the weight - only one value each on for each block
 
   # library(latex2exp)
-  topl_colors <- grDevices:::colorRampPalette(c("#64d8cb","#26a69a", "#90a4ae","#5f5fc4", "#283593"))
+  topl_colors <- colorRampPalette(c("#64d8cb","#26a69a", "#90a4ae","#5f5fc4", "#283593"))
 
   #date = NULL; block = 1; base_plot = TRUE; L2E = TRUE; Chi_square = TRUE; # make test and debug easier.
   # x = Data[,1]; date = date_Sector;

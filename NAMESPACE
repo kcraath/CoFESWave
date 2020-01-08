@@ -2,9 +2,10 @@ exportPattern("^[[:alpha:]]+")
 importFrom("graphics", "axis", "box", "contour", "image", "legend",
            "lines", "matplot", "mtext", "par", "plot", "polygon",
            "text")
-importFrom("utils", "setTxtProgressBar", "txtProgressBar") 
+importFrom("utils", "setTxtProgressBar", "txtProgressBar")
 importFrom("grDevices", "rgb", "colorRampPalette")
 importFrom("stats", "arima", "arima.sim", "fft", "loess", "na.omit",
            "pacf", "predict", "quantile", "rnorm", "runif", "sd",
            "ts.plot")
 importFrom("latex2exp", "TeX")
+importFrom("grDevices", "colorRampPalette")

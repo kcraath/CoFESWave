@@ -2,7 +2,7 @@
 % Please edit documentation in R/WaveL2E.R
 \name{WaveL2E}
 \alias{WaveL2E}
-\title{Title}
+\title{WaveL2E is a function}
 \usage{
 WaveL2E(
   x,
@@ -14,11 +14,24 @@ WaveL2E(
 )
 }
 \arguments{
-\item{Chi_square}{}
+\item{x}{a series}
+
+\item{date}{a date}
+
+\item{block}{number of what}
+
+\item{base_plot}{TRUE if plot}
+
+\item{L2E}{TRUE if L2E}
+
+\item{Chi_square}{TRUE if L2E_chi_square}
 }
 \value{
-
+a "whatwhat" object
 }
 \description{
-Title
+WaveL2E is a function
+}
+\examples{
+## WaveL2E(x)
 }
