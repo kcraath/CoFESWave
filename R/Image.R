@@ -1,5 +1,37 @@
-#' Title
+#' CoFESWave.image
 #'
+#' @title Image plot of the wavelet power spectrum of a single time series
+#'
+#' @description This function plots the wavelet power spectrum of a single time series,
+#' which is provided by an object of
+#' class \code{"analyze.wavelet"}, or alternatively of class \code{"analyze.coherency"}.
+#' (In the latter case, the series number or name must be specified.)
+#' The vertical axis shows the Fourier periods. The horizontal axis shows time step counts, but can
+#' be easily transformed into a calendar axis if dates are provided in either row names or as a variable
+#' named \code{"date"} in the data frame at hand. Both axes can be relabeled.
+#' In particular, an option is given to individualize the period and/or time axis
+#' by specifying tick marks and labels.
+#'
+#' An option is given to raise wavelet power values to any (positive) exponent before
+#' plotting in order to accentuate the contrast of the image.
+#'
+#' The color levels can be defined according to quantiles of values or
+#' according to equidistant breakpoints (covering the interval from 0
+#'                                       to maximum level), with the number of levels as a further
+#' parameter. A user-defined maximum level can be applied.
+#' In addition, there is an option to adopt an individual color palette.
+#'
+#' Further plot design options concern: plot of the cone of
+#' influence, plot of wavelet power contour lines at a specified
+#' level of significance, plot of power ridges.
+#'
+#' Finally, there is an option to insert and format a color legend (a
+#' right-hand vertical color bar) and to set the plot title.  For
+#' further processing of the plot, graphical parameters of plot
+#' regions are provided as output.
+#'
+#' The name and parts of the layout were inspired by a similar function developed by
+#' Huidong Tian and Bernard Cazelles (archived R package \code{WaveletCo}).
 #' @param WT
 #' @param my.series
 #' @param exponent

@@ -183,7 +183,7 @@
 #' \item{date.format}{the format of calendar date (if available)}
 #' \item{date.tz}{the time zone of calendar date (if available)}
 #'
-#' @author CoFES. Credits are also due toAngi Roesch and Harald Schmidbauer, Huidong Tian, and Bernard Cazelles.
+#' @author CoFES. Credits are also due toAngi Roesch, Harald Schmidbauer, Huidong Tian, and Bernard Cazelles.
 #'
 #' @references
 #' Aguiar-Conraria L., and Soares M.J., 2011. The Continuous Wavelet Transform: A Primer.

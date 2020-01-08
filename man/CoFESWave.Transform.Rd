@@ -294,5 +294,5 @@ Bulletin of the American Meteorological Society 79 (1), 61--78.
 
 }
 \author{
-CoFES. credits are also due toAngi Roesch and Harald Schmidbauer, Huidong Tian, and Bernard Cazelles.
+CoFES. Credits are also due toAngi Roesch, Harald Schmidbauer, Huidong Tian, and Bernard Cazelles.
 }
