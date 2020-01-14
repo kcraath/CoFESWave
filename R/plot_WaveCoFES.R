@@ -118,7 +118,7 @@ plot_CoFESWaveWCO <- function(Coherency.Object,
   # 1.1. Plot of coherency
   layout(matrix(c(1,1,1,1),1,1))
   par(mar=c(6.1,3.1,3.1,2.1))
-  fields:::image.plot(times,periods,C, zlim = c(min.lim,max.lim),
+  fields::image.plot(times,periods,C, zlim = c(min.lim,max.lim),
                      axes = FALSE, main=string_title_co,
                      xlab = " ", ylab = "Periods", col = topl_colors(124))
   polygon(times,coi,border="#5f5fc4", lwd=3)
