@@ -2,7 +2,7 @@
 % Please edit documentation in R/plot_WaveCoFES.R
 \name{plot_CoFESWaveWCO}
 \alias{plot_CoFESWaveWCO}
-\title{Title}
+\title{plot_CoFESWaveWCO}
 \usage{
 plot_CoFESWaveWCO(
   Coherency.Object,
@@ -13,11 +13,25 @@ plot_CoFESWaveWCO(
 )
 }
 \arguments{
-\item{up.FP}{}
-}
-\value{
+\item{Coherency.Object}{output of function CoFEScoherency or CoFESmpcoherency}
 
+\item{pE}{a constant to enhance the quality of picture}
+
+\item{horizons.label}{Label the horizontal axis with labels (instead of numbers)? Logical.
+
+Default: \code{TRUE}.}
+
+\item{low.FP}{lower periods used in the frequency band}
+
+\item{up.FP}{upper periods used in the frequency band}
 }
 \description{
-Title
+To plot (absolute value) of wavelet coherency or
+multiple or partial wavelet coherencies of several series, coi (and levels of sigificance)
+}
+\examples{
+## more work
+}
+\author{
+CoFES. Credits are also due to L. Aguiar-Conraria and M.J. Soares.
 }

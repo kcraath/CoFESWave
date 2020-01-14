@@ -23,7 +23,7 @@
 #' Output includes the original (detrended) and the reconstructed
 #' time series, along with reconstruction waves and parameters.
 #'
-#' @param WT an object of class \code{"analyze.wavelet"} or \code{"analyze.coherency"}}
+#' @param WT an object of class \code{"analyze.wavelet"} or \code{"analyze.coherency"}
 #' @param my.series In case \code{class(WT) = "analyze.coherency"}: number (\code{1} or
 #' \code{2}) or name of the series to be analyzed.
 #'
@@ -125,7 +125,7 @@
 #' \code{tcl}), ticks will be drawn outward.
 #'
 #' Default here: \code{0.5}.
-#' @param spec.time.axisa list of tick mark and label specifications for individualized time axis labeling
+#' @param spec.time.axis a list of tick mark and label specifications for individualized time axis labeling
 #' (only effective if \code{label.time.axis = TRUE}):
 #'
 #'\itemize{
@@ -164,7 +164,7 @@
 #'
 #' Default: \code{TRUE}.
 #'
-#' @value A list of class \code{reconstruct} with the following elements:
+#' @return A list of class \code{reconstruct} with the following elements:
 #' %%%%%%%%%%%%%%%%%
 #'
 #' \item{series}{a data frame building on \code{WT$series} with the following columns:
@@ -232,7 +232,7 @@
 #' A practical guide to wavelet analysis.
 #' Bulletin of the American Meteorological Society 79 (1), 61--78.
 #'
-#' @seealso \code{\link{CoFESWave.Transform}
+#' @seealso \code{\link{CoFESWave.Transform}}
 #'
 #' @examples \dontrun{
 #' ## The following example is adopted from Liu et al., 2007:

@@ -123,7 +123,7 @@
 #' Default: \code{NULL}.
 #' @param verbose Print verbose output on the screen? Logical.
 #'
-#' Default: \code{TRUE}
+#' Default: \code{TRUE}.
 #'
 #' @details Wavelet transformation, as well as p-value computations, are
 #' carried out by calling the internal function \code{wt}.
@@ -205,7 +205,7 @@
 #' Torrence C., and Compo G.P., 1998. A practical guide to wavelet analysis.
 #' Bulletin of the American Meteorological Society 79 (1), 61--78.
 #'
-#' @seealso \code{\link{CoFESWave.reconstruct}
+#' @seealso \code{\link{CoFESWave.reconstruct}}
 #'
 #' @examples \dontrun{
 #' ## The following example is adopted from Liu et al., 2007:

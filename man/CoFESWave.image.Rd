@@ -518,7 +518,7 @@ A practical guide to wavelet analysis.
 Bulletin of the American Meteorological Society 79 (1), 61--78.
 }
 \seealso{
-
+\code{\link{CoFESWave.Transform}}, \code{\link{CoFESWave.reconstruct}}
 }
 \author{
 CoFES. Credits are also due toAngi Roesch, Harald Schmidbauer, Huidong Tian, and Bernard Cazelles.

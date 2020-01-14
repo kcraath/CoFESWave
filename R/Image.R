@@ -254,7 +254,7 @@
 #'
 #' @author CoFES. Credits are also due toAngi Roesch, Harald Schmidbauer, Huidong Tian, and Bernard Cazelles.
 #'
-#' @seealso \code{\link{CoFESWave.Transform}, \code{\link{CoFESWave.reconstruct}
+#' @seealso \code{\link{CoFESWave.Transform}}, \code{\link{CoFESWave.reconstruct}}
 #'
 #' @examples \dontrun{
 #' ## The following example is adopted from Liu et al., 2007:

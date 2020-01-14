@@ -2,7 +2,7 @@
 % Please edit documentation in R/coherency.R
 \name{CoFEScoherency}
 \alias{CoFEScoherency}
-\title{Title}
+\title{Wavelet Coherency and Cross Wavelet Transform of two series}
 \usage{
 CoFEScoherency(
   x,
@@ -27,11 +27,154 @@ CoFEScoherency(
 )
 }
 \arguments{
-\item{date}{}
+\item{x}{one series}
+
+\item{y}{another serise (same length with x)}
+
+\item{dt}{sampling rate
+
+Default: \code{1}.}
+
+\item{dj}{frequency resolution
+ (i.e. 1/dj = number of voices per octave)
+
+Default: \code{0.25}.}
+
+\item{low.period}{lower period of the decomposition
+
+Default: \code{2*dt}.}
+
+\item{up.period}{upper period of the decomposition
+
+Default: \code{length(x)*dt}.}
+
+\item{pad}{an integer (power of 2) defining the total length of
+the vectors x and x after zero padding;
+if pad is not a power of 2, pad with zeros to
+total length: 2^(next power of 2 + 2)}
+
+\item{sigma}{the sigma parameter for the Gabor wavelet
+
+Default: \code{1 - Morlet Wavelet}.}
+
+\item{wt.type}{type of window for smoothing in time direction
+\tabular{rlll}{
+  \tab \code{0}  \tab : \tab Bartlett \cr
+  \tab \code{1}  \tab : \tab Blackman \cr
+  \tab \code{2}  \tab : \tab Rectangular \cr
+  \tab \code{3}  \tab : \tab Hamming \cr
+  \tab \code{4}  \tab : \tab Hanning \cr
+  \tab \code{5}  \tab : \tab Triangular
+}
+
+Default: \code{Bartlett}.}
+
+\item{wt.size}{(half) size of window in time
+
+Default: \code{5}.}
+
+\item{ws.type}{type of window for smoothing in scale direction
+\tabular{rlll}{
+  \tab \code{0}  \tab : \tab Bartlett \cr
+  \tab \code{1}  \tab : \tab Blackman \cr
+  \tab \code{2}  \tab : \tab Rectangular \cr
+  \tab \code{3}  \tab : \tab Hamming \cr
+  \tab \code{4}  \tab : \tab Hanning \cr
+  \tab \code{5}  \tab : \tab Triangular
+}
+
+Default: \code{Bartlett}.}
+
+\item{ws.size}{(half) size of window in scale
+
+Default: \code{5}.}
+
+\item{n.sur}{integer, number of surrogate series, if we want
+            to compute p-values for the Wavelet Coherency
+
+Default: \code{0 - no computation}.}
+
+\item{p}{non-negative integers, orders of the ARMA(P,Q) model
+
+Default: \code{0}.}
+
+\item{q}{non-negative integers, orders of the ARMA(P,Q) model
+
+Default: \code{0}.}
+
+\item{Phase_diff}{Calculate the phase-difference? Logical.
+
+Default: \code{TRUE}.}
+
+\item{low.fp}{lower periods used in the computation of phase-difference
+
+Default: \code{32}.}
+
+\item{up.fp}{upper periods used in the computation of phase-difference
+
+Default: \code{128}.}
+
+\item{date}{a date series}
 }
 \value{
-
+A list of class \code{"CoFEScoherency"} with elements of different dimensions.
+%%%%%%%%%%%%%%%%%
+Here is a detailed list of all elements:
+#' %%%%%%%%%%%%%%%%%
+\item{wco}{complex wavelet coherency of x and y}
+\item{periods}{the vector of Fourier periods (in time units)
+                that correspond to the the scales used}
+\item{scales}{the vector of scales, given by
+                 s0*2^(j*dj);j=0,...,J1,
+           where J1+1 is  number of scales and s0 is
+           minimum scale}
+\item{coi}{the "cone-of-influence", which is a vector of
+           n_x=length(x) points that contains the limit of the
+           region where the wavelet transforms are influenced
+           by edge effects}
+\item{pvCo}{p-values for wavelet coherency}
+\item{cross}{cross-wavelet transform of x and y}
+\item{scross}{smoothed cross wavelet transform of x and y}
+\item{rwco}{real coherency (absolute value of complex coheency)}
+\item{phase.dif}{mean phase difference (in selected periods)}
+\item{time.lag}{mean time-lag (in selected periods)}
+\item{average.coer}{average coherency (average at all times)}
+\item{average.cross}{average cross power (average at all times)}
+\item{date}{a date series}
+%%%%%%%%%%%%%%%%%
 }
 \description{
-Title
+Computes the Wavelet Coherency matrix (wco) of two series
+x and y, using a Gabor Wavelet Transform.
+Different windows for smoothing can be used.
+Also computes the cross-Wavelet Transform (smoothed (scross) or
+non-smoothed (cross)).
+It also gives the p-values for the wavelet coherency (pvCo)
+these are computed with n.sur surrogate series.
+The surrogates are constructed by fitting an
+ARMA(p,q) model to our series and building new samples by drawing
+errors from a  Gaussian distribution.
+The major part of the code has been adopted from L. Aguiar-Conraria and M.J. Soares.
+}
+\details{
+CoFEScoherency
+}
+\examples{
+## more work
+}
+\references{
+Aguiar-Conraria, L. and Soares, M.J. (2011)
+"The Continuous Wavelet Transform: A Primer",
+NIPE Working Paper 16/2011.
+
+what?
+"Time-Dependent Spectral Analysis of Epidemiological Time-Series with Wavelets",
+Journal of the Royal Society Interface, 4, 625.36.
+
+Torrence, C. and Compo, T.C.,
+"A Prectical Guide to Wavelet Analysis" (1998),
+Bulletin of the American Meteorological Society, 79, 605.618.
+}
+\author{
+CoFES. Credits are also due to L. Aguiar-Conraria and M.J. Soares.
 }

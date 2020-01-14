@@ -16,22 +16,52 @@ WaveL2E(
 \arguments{
 \item{x}{a series}
 
-\item{date}{a date}
+\item{date}{a date series}
 
-\item{block}{number of what}
+\item{block}{number of observations within a block
 
-\item{base_plot}{TRUE if plot}
+Default: \code{1}.}
 
-\item{L2E}{TRUE if L2E}
+\item{base_plot}{Plot wavelet power spectrum of x? Logical
 
-\item{Chi_square}{TRUE if L2E_chi_square}
+Default: \code{TRUE}.}
+
+\item{L2E}{Apply L2E thresholding method? Logical
+
+Default: \code{TRUE}.}
+
+\item{Chi_square}{Apply L2E_Chi_square thresholding method? Logical
+
+Default: \code{TRUE}.}
 }
 \value{
-a "whatwhat" object
+A list of class \code{"WaveL2E"} with elements of different dimensions.
+%%%%%%%%%%%%%%%%%
+Here is a detailed list of all elements:
+#' %%%%%%%%%%%%%%%%%
+\item{sig}{tmp}
+\item{w}{tmp}
+\item{dis0}{tmp}
+\item{thresh}{tmp}
+\item{qthresh}{tmp}
+\item{original}{tmp}
+\item{Ana_Wave}{tmp}
+\item{Emp_WaveL2E}{tmp}
+\item{Emp_WaveL2E_MAD}{tmp}
+\item{recon_L2E}{tmp}
+\item{PTV_L2E}{tmp}
+\item{PSL_L2E}{tmp}
+\item{recon_Chi_square}{tmp}
+\item{PTV_Chi_square}{tmp}
+\item{PSL_Chi_square}{tmp}
+\item{date}{a date series}
 }
 \description{
 WaveL2E is a function
 }
 \examples{
 ## WaveL2E(x)
+}
+\author{
+CoFES.
 }

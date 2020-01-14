@@ -43,6 +43,8 @@ CoFESWave.reconstruct(
 )
 }
 \arguments{
+\item{WT}{an object of class \code{"analyze.wavelet"} or \code{"analyze.coherency"}}
+
 \item{my.series}{In case \code{class(WT) = "analyze.coherency"}: number (\code{1} or
 \code{2}) or name of the series to be analyzed.
 
@@ -171,27 +173,7 @@ of text; see \code{par}. With \code{timetcl = -0.5} (which is the R default sett
 
 Default here: \code{0.5}.}
 
-\item{main.waves}{an overall title for the plot of reconstruction waves.
-
-Default: \code{NULL}.}
-
-\item{main.rec}{an overall title for the plot of original vs. reconstructed series.
-
-Default: \code{NULL}.}
-
-\item{main}{an overall title for both plots.
-
-Default: \code{NULL}.}
-
-\item{lwd.axis}{line width of axes.
-
-Default: \code{1}.}
-
-\item{verbose}{Print verbose output on the screen? Logical.
-
-Default: \code{TRUE}.}
-
-\item{spec.time.axisa}{list of tick mark and label specifications for individualized time axis labeling
+\item{spec.time.axis}{a list of tick mark and label specifications for individualized time axis labeling
 (only effective if \code{label.time.axis = TRUE}):
 
 \itemize{
@@ -214,6 +196,79 @@ Default: \code{TRUE}.}
  Default: \code{NA} (centering is used).
 }
 Mismatches will result in a reset to default plotting.}
+
+\item{main.waves}{an overall title for the plot of reconstruction waves.
+
+Default: \code{NULL}.}
+
+\item{main.rec}{an overall title for the plot of original vs. reconstructed series.
+
+Default: \code{NULL}.}
+
+\item{main}{an overall title for both plots.
+
+Default: \code{NULL}.}
+
+\item{lwd.axis}{line width of axes.
+
+Default: \code{1}.}
+
+\item{verbose}{Print verbose output on the screen? Logical.
+
+Default: \code{TRUE}.}
+}
+\value{
+A list of class \code{reconstruct} with the following elements:
+%%%%%%%%%%%%%%%%%
+
+\item{series}{a data frame building on \code{WT$series} with the following columns:
+    \tabular{rlll}{
+      \tab date             \tab : \tab the calendar date (if available as column\cr
+                                                           \tab                  \tab   \tab in WT$series) \cr
+      \tab <x>              \tab : \tab series <x>, with original name retained \cr
+      \tab                  \tab : \tab (detrended, if \code{loess.span != 0}) \cr
+      \tab <x>.trend        \tab : \tab the trend series (if \code{loess.span != 0}) \cr
+      \tab <x>.r            \tab : \tab the reconstructed (detrended) series
+    }
+
+  Row names are taken over from WT$series, and so are dates if given as row names.
+  If \code{WT} is of class \code{analyze.coherency}, the second series in the coherency analysis is retained;
+  if \code{loess.span != 0}, the second series is retained in the detrended version, and the trend is retained as well.
+}
+%%%%%%%%%%%%%%%%%
+\item{rec.waves}{data frame of scaled waves used for reconstruction}
+%%%%%%%%%%%%%%%%%
+\item{loess.span}{parameter \code{alpha} in \code{loess} controlling the degree of time series smoothing,
+  if the time series was detrended; no detrending if \code{loess.span = 0}.}
+%%%%%%%%%%%%%%%%%
+\item{lvl}{minimum level of wavelet power for waves (wave segments) to be included
+  in the reconstruction}
+\item{only.coi}{Was the influence of edge effects excluded? I.e. was the cone of influence used only?}
+\item{only.sig}{Was wavelet power significance used in reconstruction?}
+\item{siglvl}{level of wavelet power significance}
+\item{only.ridge}{Was the wavelet power ridge used only?}
+%%%%%%%%%%%%%%%%%
+\item{rnum.used}{the vector of Fourier period numbers used for reconstruction }
+%%%%%%%%%%%%%%%%%
+\item{rescale}{Was the reconstructed series rescaled according to the mean and standard deviation
+  taken from the original (detrended) series?}
+%%%%%%%%%%%%%%%%%
+\item{dt}{time resolution, i.e. sampling resolution in the time domain, \code{1/dt} = number of observations per time unit}
+\item{dj}{frequency resolution, i.e. sampling resolution in the frequency domain, \code{1/dj} = number of suboctaves (voices per octave)}
+%%%%%%%%%%%%%%%%%
+\item{Period}{the Fourier periods
+  (measured in time units determined by \code{dt}, see the explanations concerning \code{dt})}
+\item{Scale}{the scales (the Fourier periods divided by the Fourier factor)}
+%%%%%%%%%%%%%%%%%
+\item{nc}{number of columns = number of observations = number of observation epochs; "epoch" meaning point in time}
+\item{nr}{number of rows = number of scales (Fourier periods)}
+%%%%%%%%%%%%%%%%%
+\item{axis.1}{tick levels corresponding to the time steps used for (cross-)wavelet transformation: \code{1, 1+dt, 1+2dt, ...}.
+  The default time axis in plot functions provided by \code{WaveletComp} is determined by observation epochs, however; "epoch" meaning point in time. }
+\item{axis.2}{tick levels corresponding to the log of Fourier periods: \code{log2(Period)}. This determines the period axis in plot functions provided by \code{WaveletComp}.}
+%%%%%%%%%%%%%%%%%
+\item{date.format}{the format of calendar date (if available)}
+\item{date.tz}{the time zone of calendar date (if available)}
 }
 \description{
 This function reconstructs a (detrended) time series analyzed
@@ -331,7 +386,7 @@ A practical guide to wavelet analysis.
 Bulletin of the American Meteorological Society 79 (1), 61--78.
 }
 \seealso{
-
+\code{\link{CoFESWave.Transform}}
 }
 \author{
 CoFES. Credits are also due toAngi Roesch and Harald Schmidbauer.

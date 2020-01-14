@@ -1,16 +1,19 @@
-#' Title
+#' plot_CoFESWaveWCO
 #'
-#' @param Coherency.Object
-#' @param pE
-#' @param horizons.label
-#' @param low.FP
-#' @param up.FP
+#' @description To plot (absolute value) of wavelet coherency or
+#' multiple or partial wavelet coherencies of several series, coi (and levels of sigificance)
+#' @param Coherency.Object output of function CoFEScoherency or CoFESmpcoherency
+#' @param pE a constant to enhance the quality of picture
+#' @param horizons.label Label the horizontal axis with labels (instead of numbers)? Logical.
 #'
-#' @return
-#' @importFrom fields image.plot
-#' @export
+#' Default: \code{TRUE}.
+#' @param low.FP lower periods used in the frequency band
+#' @param up.FP upper periods used in the frequency band
+#'
+#' @author CoFES. Credits are also due to L. Aguiar-Conraria and M.J. Soares.
 #'
 #' @examples
+#' ## more work
 plot_CoFESWaveWCO <- function(Coherency.Object,
                               pE=5,
                               horizons.label = TRUE,
@@ -18,8 +21,6 @@ plot_CoFESWaveWCO <- function(Coherency.Object,
 { ######################
   # Coherency plot
   ######################
-  # library(matlab)  # To use jet.colors
-  # library(fields)  # To add color bar
 
 
   # make test and debug easier.
@@ -117,7 +118,7 @@ plot_CoFESWaveWCO <- function(Coherency.Object,
   # 1.1. Plot of coherency
   layout(matrix(c(1,1,1,1),1,1))
   par(mar=c(6.1,3.1,3.1,2.1))
-  fields::image.plot(times,periods,C, zlim = c(min.lim,max.lim),
+  fields:::image.plot(times,periods,C, zlim = c(min.lim,max.lim),
                      axes = FALSE, main=string_title_co,
                      xlab = " ", ylab = "Periods", col = topl_colors(124))
   polygon(times,coi,border="#5f5fc4", lwd=3)

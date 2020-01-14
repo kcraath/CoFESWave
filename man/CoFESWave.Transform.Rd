@@ -123,7 +123,7 @@ Default: \code{NULL}.}
 
 \item{verbose}{Print verbose output on the screen? Logical.
 
-Default: \code{TRUE}}
+Default: \code{TRUE}.}
 }
 \value{
 A list of class \code{"analyze.wavelet"} with elements of different dimensions.
@@ -291,7 +291,7 @@ Torrence C., and Compo G.P., 1998. A practical guide to wavelet analysis.
 Bulletin of the American Meteorological Society 79 (1), 61--78.
 }
 \seealso{
-
+\code{\link{CoFESWave.reconstruct}}
 }
 \author{
 CoFES. Credits are also due toAngi Roesch, Harald Schmidbauer, Huidong Tian, and Bernard Cazelles.

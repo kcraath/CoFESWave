@@ -1,14 +1,42 @@
 #' WaveL2E is a function
 #'
 #' @param x a series
-#' @param date a date
-#' @param block number of what
-#' @param base_plot TRUE if plot
-#' @param L2E TRUE if L2E
-#' @param Chi_square TRUE if L2E_chi_square
-#' @return a "whatwhat" object
-#' @export
+#' @param date a date series
+#' @param block number of observations within a block
 #'
+#' Default: \code{1}.
+#' @param base_plot Plot wavelet power spectrum of x? Logical
+#'
+#' Default: \code{TRUE}.
+#' @param L2E Apply L2E thresholding method? Logical
+#'
+#' Default: \code{TRUE}.
+#' @param Chi_square Apply L2E_Chi_square thresholding method? Logical
+#'
+#' Default: \code{TRUE}.
+#'
+#' @return A list of class \code{"WaveL2E"} with elements of different dimensions.
+#' %%%%%%%%%%%%%%%%%
+#' Here is a detailed list of all elements:
+#'#' %%%%%%%%%%%%%%%%%
+#' \item{sig}{tmp}
+#' \item{w}{tmp}
+#' \item{dis0}{tmp}
+#' \item{thresh}{tmp}
+#' \item{qthresh}{tmp}
+#' \item{original}{tmp}
+#' \item{Ana_Wave}{tmp}
+#' \item{Emp_WaveL2E}{tmp}
+#' \item{Emp_WaveL2E_MAD}{tmp}
+#' \item{recon_L2E}{tmp}
+#' \item{PTV_L2E}{tmp}
+#' \item{PSL_L2E}{tmp}
+#' \item{recon_Chi_square}{tmp}
+#' \item{PTV_Chi_square}{tmp}
+#' \item{PSL_Chi_square}{tmp}
+#' \item{date}{a date series}
+#'
+#' @author CoFES.
 #' @examples
 #' ## WaveL2E(x)
 WaveL2E <- function(x, date = NULL, block = 1, base_plot = TRUE,

@@ -9,3 +9,4 @@ importFrom("stats", "arima", "arima.sim", "fft", "loess", "na.omit",
            "ts.plot")
 importFrom("latex2exp", "TeX")
 importFrom("grDevices", "colorRampPalette")
+importFrom("fields", "image.plot")

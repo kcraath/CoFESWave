@@ -1,30 +1,139 @@
-#' Title
+#' CoFESmpcoherency
 #'
-#' @param X
-#' @param dt
-#' @param dj
-#' @param low.period
-#' @param up.period
-#' @param pad
-#' @param sigma
-#' @param coher.type
-#' @param index.p
-#' @param wt.type
-#' @param wt.size
-#' @param ws.type
-#' @param ws.size
-#' @param n.sur
-#' @param p
-#' @param q
-#' @param Phase_diff
-#' @param low.fp
-#' @param up.fp
-#' @param date
+#' @title Multiple or Partial Wavelet Coherencies of several series
+#' @aliases CoFESmpcoherency
+#' @description Computes multiple(wmco) and/or partial wavelet coherencies (wpco)
+#' of columns of  matrix X. These are computed using a Gabor Wavelet
+#' Transform (different Gabor wavelets can be used).
+#' Different windows for smoothing can be used.
+#' One can also compute the corresponding p_values
+#' (if we take n.sur>0).
+#' The surrogates are constructed by fitting an  ARMA(p,q)
+#' model to our series and building new samples by drawing
+#' errors from a  Gaussian distribution.
 #'
-#' @return
-#' @export
+#' The major part of the code has been adopted from L. Aguiar-Conraria and M.J. Soares.
+#' @param X matrix with m columns (vectors corresponding to time-series)
+#' whose partial or   multiple coherencies we want to compute.
+#' The first column X[,1] has a special role;
+#' e.g. in case of multiple coherency, we want to compte R1.(2...m)
+#' @param dt sampling rate
+#'
+#' Default: \code{1}.
+#' @param dj frequency resolution
+#'  (i.e. 1/dj = number of voices per octave)
+#'
+#' Default: \code{0.25}.
+#' @param low.period lower period of the decomposition
+#'
+#' Default: \code{2*dt}.
+#' @param up.period upper period of the decomposition
+#'
+#' Default: \code{length(x)*dt}.
+#' @param pad an integer (power of 2) defining the total length of
+#'            the vectors x and x after zero padding;
+#'            if pad is not a power of 2, pad with zeros to
+#'            total length: 2^(next power of 2 + 2)
+#' @param sigma the sigma parameter for the Gabor wavelet
+#'
+#' Default: \code{1 - Morlet Wavelet}.
+#' @param coher.type type of coherency we want to compute
+#' \tabular{rlll}{
+#'   \tab \code{0} or "part"  \tab : \tab partial (default) \cr
+#'   \tab \code{1} or "mult"  \tab : \tab multiple
+#' }
+#'
+#' @param index.p index of series for partial coherency
+#'
+#' Default: \code{2}.
+#' @param wt.type type of window for smoothing in time direction
+#' \tabular{rlll}{
+#'   \tab \code{0}  \tab : \tab Bartlett \cr
+#'   \tab \code{1}  \tab : \tab Blackman \cr
+#'   \tab \code{2}  \tab : \tab Rectangular \cr
+#'   \tab \code{3}  \tab : \tab Hamming \cr
+#'   \tab \code{4}  \tab : \tab Hanning \cr
+#'   \tab \code{5}  \tab : \tab Triangular
+#' }
+#'
+#' Default: \code{Bartlett}.
+#' @param wt.size (half) size of window in time
+#'
+#' Default: \code{5}.
+#' @param ws.type type of window for smoothing in scale direction
+#' \tabular{rlll}{
+#'   \tab \code{0}  \tab : \tab Bartlett \cr
+#'   \tab \code{1}  \tab : \tab Blackman \cr
+#'   \tab \code{2}  \tab : \tab Rectangular \cr
+#'   \tab \code{3}  \tab : \tab Hamming \cr
+#'   \tab \code{4}  \tab : \tab Hanning \cr
+#'   \tab \code{5}  \tab : \tab Triangular
+#' }
+#'
+#' Default: \code{Bartlett}.
+#' @param ws.size (half) size of window in scale
+#'
+#' Default: \code{5}.
+#' @param n.sur integer, number of surrogate series, if we want
+#'             to compute p-values for the Wavelet Coherency
+#'
+#' Default: \code{0 - no computation}.
+#' @param p non-negative integers, orders of the ARMA(P,Q) model
+#'
+#' Default: \code{0}.
+#' @param q non-negative integers, orders of the ARMA(P,Q) model
+#'
+#' Default: \code{0}.
+#' @param Phase_diff Calculate the phase-difference? Logical.
+#'
+#' Default: \code{TRUE}.
+#' @param low.fp lower periods used in the computation of phase-difference
+#'
+#' Default: \code{32}.
+#' @param up.fp upper periods used in the computation of phase-difference
+#'
+#' Default: \code{128}.
+#' @param date a date series
+#'
+#' @return A list of class \code{"CoFESmpcoherency"} with elements of different dimensions.
+#' %%%%%%%%%%%%%%%%%
+#' Here is a detailed list of all elements:
+#'#' %%%%%%%%%%%%%%%%%
+#' \item{wmpco}{Wavelet Multiple or Partial Coherency Matrix}
+#' \item{periods}{the vector of Fourier periods (in time units)
+#'                that corresponds to the used scales}
+#' \item{scales}{the vector of scales, given by
+#'                  s0*2^(j*dj);j=0,...,J1,
+#'            where J1+1 is  number of scales and s0 is
+#'            minimum scale}
+#' \item{coi}{the "cone-of-influence", which is a vector of
+#'            n_x=length(x) points that contains the limit of the
+#'            region where the wavelet transforms are influenced
+#'            by edge effects}
+#' \item{low.fp}{lower periods where phase-diff is computed}
+#' \item{up.fp}{upper periods where phase-diff is computed}
+#' \item{pvMP}{matrix of p-values for the multiple/partial wavelet coherency}
+#' \item{phase.dif}{mean phase difference (in the selected periods)}
+#' \item{time.lag}{time-lag (in the selected periods)}
+#' \item{average.wpco}{mean partial coherency (we take absolute value of partial coherency)}
+#' \item{date}{a date series}
+#' %%%%%%%%%%%%%%%%%
+#'
+#' @author CoFES. Credits are also due to L. Aguiar-Conraria and M.J. Soares.
+#'
+#' @references
+#' Aguiar-Conraria, L. and Soares, M.J. (2010)
+#'
+#' Soares, M.J. (2010),
+#' "Multiple and Partial Wavelet Coherencies"
+#'  (private notes) available at http:
+#'
+#' Torrence, C. and Compo, T.C.,
+#' "A Prectical Guide to Wavelet Analysis" (1998),
+#' Bulletin of the American Meteorological Society, 79, 605.618.
 #'
 #' @examples
+#' ## more work
 CoFESmpcoherency <- function(X,
                              dt=1,dj=0.25,
                              low.period=2*dt,up.period=nrow(X)*dt,
