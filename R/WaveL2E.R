@@ -215,7 +215,7 @@ WaveL2E <- function(x, date = NULL, block = 1, base_plot = TRUE,
                           legend.params = list(lab = "wavelet power levels", mar = 5.1, cex = 6, n.ticks = 10),
                           color.key = "quantile", lwd = 2, plot.ridge = FALSE, color.palette = "topl_colors(n.levels)",
                           show.date = Signal_date)
-    title(TeX(" CWT Power Spectrum Thresholded - L_2E"), cex.main = 1.3,
+    title(latex2exp::TeX(" CWT Power Spectrum Thresholded - L_2E"), cex.main = 1.3,
           xlab = " ", ylab = " ", cex.lab = 1.3)
 
     # 2. Reconstructed Time-Seires
@@ -236,7 +236,7 @@ WaveL2E <- function(x, date = NULL, block = 1, base_plot = TRUE,
                           legend.params = list(lab = "wavelet power levels", mar = 5.1, cex = 6, n.ticks = 10),
                           color.key = "quantile", lwd = 2, plot.ridge = FALSE, color.palette = "topl_colors(n.levels)",
                           show.date = Signal_date)
-    title(TeX(" CWT Power Spectrum Thresholded - L_2E_{$\\chi$^2}"), cex.main = 1.3,
+    title(latex2exp::TeX(" CWT Power Spectrum Thresholded - L_2E_{$\\chi$^2}"), cex.main = 1.3,
           xlab = " ", ylab = " ", cex.lab = 1.3)
 
     # 2. Reconstructed Time-Seires
@@ -284,7 +284,7 @@ WaveL2E <- function(x, date = NULL, block = 1, base_plot = TRUE,
     }
 
     colnames(df.xts) <- c("original series", "reconstruction: L_2E", "reconstruction: L_2E Chi_square")
-    title_series <- TeX(" CWT Series - L_2E, L_2E_{$\\chi$^2}")
+    title_series <- latex2exp::TeX(" CWT Series - L_2E, L_2E_{$\\chi$^2}")
 
   } else if (L2E & !Chi_square) {
     df.plot <- recon_org1$series
@@ -295,7 +295,7 @@ WaveL2E <- function(x, date = NULL, block = 1, base_plot = TRUE,
       df.xts <- xts(df.plot)
     }
     colnames(df.xts) <- c("original series", "reconstruction: L_2E")
-    title_series <- TeX(" CWT Series - L_2E")
+    title_series <- latex2exp::TeX(" CWT Series - L_2E")
 
   } else if (!L2E & Chi_square) {
     df.plot <- recon_org2$series
@@ -306,7 +306,7 @@ WaveL2E <- function(x, date = NULL, block = 1, base_plot = TRUE,
       df.xts <- xts(df.plot)
     }
     colnames(df.xts) <- c("original series", "reconstruction: L_2E Chi_square", "EWaveL_2E")
-    title_series <- TeX(" CWT Series - L_2E_{$\\chi$^2} and EWaveL_2E")
+    title_series <- latex2exp::TeX(" CWT Series - L_2E_{$\\chi$^2} and EWaveL_2E")
 
   } else {
     df.plot <- my.w_original$series
@@ -317,7 +317,7 @@ WaveL2E <- function(x, date = NULL, block = 1, base_plot = TRUE,
       df.xts <- xts(df.plot)
     }
     colnames(df.xts) <- c("original series")
-    title_series <- TeX(" CWT Series")
+    title_series <- latex2exp::TeX(" CWT Series")
 
   }
 
