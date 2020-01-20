@@ -2,7 +2,7 @@
 % Please edit documentation in R/WaveL2E.R
 \name{WaveL2E}
 \alias{WaveL2E}
-\title{WaveL2E is a function}
+\title{Wavelet Analysis with L2E and L2E_chi^2 methods}
 \usage{
 WaveL2E(
   x,
@@ -42,22 +42,25 @@ Here is a detailed list of all elements:
 \item{sig}{tmp}
 \item{w}{tmp}
 \item{dis0}{tmp}
-\item{thresh}{tmp}
-\item{qthresh}{tmp}
-\item{original}{tmp}
-\item{Ana_Wave}{tmp}
+\item{thresh}{threshold of \code{x} with \eqn{L2E} thresholding}
+\item{qthresh}{threshold of \code{x} with \eqn{L2E(\chi^2)} thresholding}
+\item{original}{wavelet analysis of \code{x} without thresholding}
+\item{Ana_Wave}{wavelet analysis of \code{x} with \eqn{L2E} thresholding}
 \item{Emp_WaveL2E}{tmp}
 \item{Emp_WaveL2E_MAD}{tmp}
-\item{recon_L2E}{tmp}
-\item{PTV_L2E}{tmp}
-\item{PSL_L2E}{tmp}
-\item{recon_Chi_square}{tmp}
-\item{PTV_Chi_square}{tmp}
-\item{PSL_Chi_square}{tmp}
-\item{date}{a date series}
+\item{recon_L2E}{reconstructed series of \code{x} with \eqn{L2E} thresholding}
+\item{PTV_L2E}{percentage of total volume of \code{x} with \eqn{L2E} thresholding}
+\item{PSL_L2E}{percentage of significance area of \code{x} with \eqn{L2E} thresholding}
+\item{recon_Chi_square}{reconstructed series of \code{x} with \eqn{L2E(\chi^2)} thresholding}
+\item{PTV_Chi_square}{percentage of total volume of \code{x} with \eqn{L2E(\chi^2)} thresholding}
+\item{PSL_Chi_square}{percentage of significance area of \code{x} with \eqn{L2E(\chi^2)} thresholding}
+\item{date}{the corrsponding date series}
 }
 \description{
-WaveL2E is a function
+This is a function based on L2E and L2E_chi^2 thresholding methods.
+}
+\details{
+WaveL2E
 }
 \examples{
 ## WaveL2E(x)

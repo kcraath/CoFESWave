@@ -8,4 +8,5 @@
 #'
 #' @docType package
 #' @name CoFESWave
+#' @aliases CoFESWave CoFESWave-package
 NULL
