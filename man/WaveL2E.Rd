@@ -58,6 +58,7 @@ Here is a detailed list of all elements:
 }
 \description{
 This is a function based on L2E and L2E_chi^2 thresholding methods.
+This is a test 01/20/2020.
 }
 \details{
 WaveL2E
