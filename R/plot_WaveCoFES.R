@@ -1,6 +1,6 @@
 #' plot_CoFESWaveWCO
 #'
-#' @description To plot (absolute value) of wavelet coherency or
+#' @description This function plots the (absolute value) of wavelet coherency or
 #' multiple or partial wavelet coherencies of several series, coi (and levels of sigificance)
 #' @param Coherency.Object output of function CoFEScoherency or CoFESmpcoherency
 #' @param pE a constant to enhance the quality of picture

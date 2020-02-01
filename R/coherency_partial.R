@@ -2,19 +2,19 @@
 #'
 #' @title Multiple or Partial Wavelet Coherencies of several series
 #' @aliases CoFESmpcoherency
-#' @description Computes multiple(wmco) and/or partial wavelet coherencies (wpco)
-#' of columns of  matrix X. These are computed using a Gabor Wavelet
+#' @description This function computes multiple(wmco) and/or partial wavelet coherencies (wpco)
+#' of columns of  matrix X. These coherencies are computed using a Gabor Wavelet
 #' Transform (different Gabor wavelets can be used).
-#' Different windows for smoothing can be used.
-#' One can also compute the corresponding p_values
+#' The user has the options to use different windows for smoothing.
+#' The user can also compute the corresponding p_values
 #' (if we take n.sur>0).
-#' The surrogates are constructed by fitting an  ARMA(p,q)
+#' The surrogates are constructed by fitting an ARMA(p,q)
 #' model to our series and building new samples by drawing
 #' errors from a  Gaussian distribution.
 #'
 #' The major part of the code has been adopted from L. Aguiar-Conraria and M.J. Soares.
 #' @param X matrix with m columns (vectors corresponding to time-series)
-#' whose partial or   multiple coherencies we want to compute.
+#' whose partial or multiple coherencies we want to compute.
 #' The first column X[,1] has a special role;
 #' e.g. in case of multiple coherency, we want to compte R1.(2...m)
 #' @param dt sampling rate

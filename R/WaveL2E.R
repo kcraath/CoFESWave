@@ -2,7 +2,7 @@
 #'
 #' @title Wavelet Analysis with L2E and L2E_chi^2 methods
 #'
-#' @description This is a function based on L2E and L2E_chi^2 thresholding methods.
+#' @description This function is based on L2E and L2E_chi^2 thresholding techniques.
 #'
 #' @param x a series
 #' @param date a date series
