@@ -57,8 +57,7 @@ Here is a detailed list of all elements:
 \item{date}{the corrsponding date series}
 }
 \description{
-This is a function based on L2E and L2E_chi^2 thresholding methods.
-This is a test 01/20/2020.
+This function is based on L2E and L2E_chi^2 thresholding techniques.
 }
 \details{
 WaveL2E

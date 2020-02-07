@@ -272,12 +272,12 @@ A list of class \code{reconstruct} with the following elements:
 }
 \description{
 This function reconstructs a (detrended) time series analyzed
-by wavelet transformation using either function
-\code{analyze.wavelet} or function \code{analyze.coherency}, subject to
-optional criteria concerning: minimum wavelet power, significance of wavelet power at a
+by wavelet transformation using either the function
+\code{analyze.wavelet} or the function \code{analyze.coherency}.  The user is given the
+option to specify the criteria concerning: minimum wavelet power, significance of wavelet power at a
 given significance level, specification of (Fourier) periods or
 period bands, exclusive use of the power ridge and/or the cone of influence.
-An option is provided to prevent the reconstructed series from final rescaling
+The user is also provided an option to prevent the reconstructed series from final rescaling
 (applying the original (detrended) series' mean and standard deviation).
 
 (If the object provided as input is of class \code{"analyze.coherency"},

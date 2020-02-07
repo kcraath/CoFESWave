@@ -183,17 +183,17 @@ Here is a detailed list of all elements:
 \item{date.tz}{the time zone of calendar date (if available)}
 }
 \description{
-The time series is selected from an input data frame by specifying either
-its name or its column number. Optionally, the time series is detrended,
+A time series is selected from an input dataframe by specifying either
+the name or the column number. The user has the option for the time series to be detrended,
 using \code{loess} with parameter \code{loess.span}. Internally, the series
 will be further standardized before it undergoes wavelet transformation.
 
 The wavelet power spectrum is computed by applying the Morlet
-wavelet. P-values to test the null hypothesis that a period
-(within \code{lowerPeriod} and \code{upperPeriod})
-is irrelevant at a certain time are calculated if desired;
-this is accomplished with the help of a simulation algorithm.
-There is a selection of models from which to
+wavelet. The user has the option of calculating P-values that test the null hypothesis that
+a period (within \code{lowerPeriod} and \code{upperPeriod})
+is irrelevant at a certain time;
+This calculation is accomplished with the help of a simulation algorithm.
+There are several models to selection from to
 choose the alternative hypothesis. The selected model will be fitted to
 the data and simulated according to estimated parameters in order
 to provide surrogate time series.
@@ -211,7 +211,7 @@ Fourier-randomized surrogate time series has been adopted from Huidong Tian.
 Wavelet computation, the simulation algorithm and ridge determination build
 heavily on the use of matrices in order to minimize computation time in R.
 
-This function provides a broad variety of final as well as intermediate results
+This function provides a broad variety of final rsults, as well as intermediate results,
 which can be further analyzed in detail.
 }
 \details{

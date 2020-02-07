@@ -144,13 +144,13 @@ Here is a detailed list of all elements:
 %%%%%%%%%%%%%%%%%
 }
 \description{
-Computes the Wavelet Coherency matrix (wco) of two series
+This Function computes the Wavelet Coherency matrix (wco) of two series
 x and y, using a Gabor Wavelet Transform.
-Different windows for smoothing can be used.
-Also computes the cross-Wavelet Transform (smoothed (scross) or
+The user can specify different windows for smoothing.
+This Function also computes the cross-Wavelet Transform (smoothed (scross) or
 non-smoothed (cross)).
-It also gives the p-values for the wavelet coherency (pvCo)
-these are computed with n.sur surrogate series.
+Thie function also provides the p-values for the wavelet coherency (pvCo)
+which are computed with the n.sur surrogate series.
 The surrogates are constructed by fitting an
 ARMA(p,q) model to our series and building new samples by drawing
 errors from a  Gaussian distribution.

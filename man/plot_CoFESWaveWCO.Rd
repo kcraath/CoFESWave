@@ -26,7 +26,7 @@ Default: \code{TRUE}.}
 \item{up.FP}{upper periods used in the frequency band}
 }
 \description{
-To plot (absolute value) of wavelet coherency or
+This function plots the (absolute value) of wavelet coherency or
 multiple or partial wavelet coherencies of several series, coi (and levels of sigificance)
 }
 \examples{
