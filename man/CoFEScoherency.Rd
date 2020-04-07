@@ -160,7 +160,41 @@ The major part of the code has been adopted from L. Aguiar-Conraria and M.J. Soa
 CoFEScoherency
 }
 \examples{
-## more work
+\dontrun{
+## The following example is adopted from Raath et al., 2020:
+
+## Please first run the example in the WaveL2E function.
+############### Figure 8 ####################
+
+Data <- cbind(CGW[,1], XLE[,1], SPY[,1])
+
+# ----- Create matrix with columns ETF columns  ----- #
+T <- length(CGW[,1])
+X<-matrix(Data,T,3)
+
+# -----  Choice of wavelet parameters  ------ #
+low.period<-1
+up.period<-512
+
+# -----   Choice of smoothing parameters for coherency ---- #
+wt.type ='ham'
+wt.size =3
+ws.type ='ham'
+ws.size =3
+
+# Computation of coherency
+# WCO<-CoFEScoherency(Data[,1],Data[,2],low.period=low.period,up.period=up.period,
+                      low.fp = 32,up.fp = 128)
+
+# --- Lower and upper  periods (mid regime)
+lowFP1<-32
+upFP1<-128
+
+WCO<-CoFEScoherency(Data[,1],Data[,2],low.period=low.period,up.period=up.period,
+                    low.fp = lowFP1,up.fp = upFP1, Phase_diff = TRUE, date = date1)
+
+}
+
 }
 \references{
 Aguiar-Conraria, L. and Soares, M.J. (2011)

@@ -30,7 +30,34 @@ This function plots the (absolute value) of wavelet coherency or
 multiple or partial wavelet coherencies of several series, coi (and levels of sigificance)
 }
 \examples{
-## more work
+\dontrun{
+## The following example is adopted from Raath et al., 2020:
+
+## Please first run the examples in the WaveL2E, CoFEScoherency and CoFESmpcoherency functions.
+
+# ----- Computation of coherency -----
+WCO<-CoFEScoherency(Data[,1],Data[,2],low.period=low.period,up.period=up.period,
+low.fp = lowFP1,up.fp = upFP1, Phase_diff = TRUE, date = date1)
+
+# -------- PLOTS  ----------
+plot_CoFESWaveWCO(WCO,pE=5, horizons.label = FALSE)
+
+
+# ----- Computation of Partial Coherency of Water , Energy (controlling for SPY) ---- #
+
+index.p=2
+Data_thresh <- cbind(periodic_waveL2E_2$recon_L2E$series$x.r,
+                     periodic_waveL2E$recon_L2E$series$x.r,
+                     periodic_waveL2E_3$recon_L2E$series$x.r)
+X<-matrix(Data_thresh,T,3)
+W<-CoFESmpcoherency(X, coher.type='part',index.p=index.p,
+                    low.period=low.period,up.period=up.period,
+                    low.fp = lowFP1,up.fp = upFP1, Phase_diff = TRUE, date = date1)
+
+plot_CoFESWaveWCO(W,pE=5)
+}
+
+
 }
 \author{
 CoFES. Credits are also due to L. Aguiar-Conraria and M.J. Soares.

@@ -41,8 +41,148 @@
 #' \item{date}{the corrsponding date series}
 #'
 #' @author CoFES.
-#' @examples
-#' ## WaveL2E(x)
+#' @examples \dontrun{
+#' ## The following example is adopted from Raath et al., 2020:
+#' ## library(CoFESWave)
+#'
+#'
+#' #install.packages("Metrics")
+#' library("Metrics")
+#' #install.packages('wavethresh')
+#' library("wavethresh")
+#' #install.packages('wmtsa')
+#' library('wmtsa')
+#' #Details (math included):
+#' ## https://www.rdocumentation.org/packages/wmtsa/versions/2.0-3/topics/wavShrink
+#'
+#' #ebayesthresh
+#' #https://cran.r-project.org/web/packages/EbayesThresh/EbayesThresh.pdf
+#' #http://www.stats.ox.ac.uk/~silverma/ebayes/ebayesw.pdf
+#' #install.packages("EbayesThresh")
+#' library(EbayesThresh)
+#' #install.packages("waveslim")
+#' library(waveslim)
+#'
+#' # An R Package of time series tools and utilities;
+#' # Rmetrics - Financial Time Series Objects
+#' #https://www.rdocumentation.org/packages/timeSeries
+#' #install.packages("timeSeries")
+#' require(timeSeries)
+#'
+#' # An R package with a collection of econometric functions for
+#' # performance and risk analysis
+#' #https://www.rdocumentation.org/packages/PerformanceAnalytics
+#' #install.packages("PerformanceAnalytics")
+#' require(PerformanceAnalytics)
+#'
+#' # R package which includes Quantitative Financial Modelling Frameworks.
+#' #https://www.rdocumentation.org/packages/quantmod
+#' #install.packages("quantmod")
+#' require(quantmod)
+#'
+#' # An R package for Wavelet analysis and reconstruction of time series,
+#' # cross-wavelets and phase-difference (with filtering options),
+#' # significance with simulation algorithms.
+#' # https://www.rdocumentation.org/packages/WaveletComp/versions/1.0
+#' #install.packages("WaveletComp")
+#' require(WaveletComp)
+#'
+#' # devtools: Tools to Make Developing R Packages Easier
+#' #https://www.rdocumentation.org/packages/devtools
+#' #install.packages("devtools")
+#' require(devtools) # using devtools to download from github
+#'
+#' # R package for time series analysis using the Wavelet Scalogram
+#' # from https://github.com/rbensua/wavScalogram
+#' #install_github("rbensua/wavScalogram")
+#' require(wavScalogram)
+#'
+#' # biwavelet: Conduct Univariate and Bivariate Wavelet Analyses
+#' # https://www.rdocumentation.org/packages/biwavelet
+#' #install.packages("biwavelet")
+#' require(biwavelet)
+#'
+#' #Latex expersions
+#' # library(latex2exp)
+#'
+#' #Latex tables
+#' library(knitr)
+#'
+#' #Interactive Charts
+#' library(highcharter)
+#'
+#' ##################
+#'
+#' ###########################
+#'
+#' # Load the WaveL2E Function
+#'
+#' ###########################
+#'
+#' # Figure 1 - Set up #
+#'
+#' # Identify the tickers of interest
+#' tickers <- c("CGW","XLE", "SPY")
+#'
+#' # Download these tickers from Yahoo for the dates in the presentation
+#' getSymbols(tickers,src="yahoo", from = "2007-06-01",to = "2018-01-26")
+#' # original paper dates.
+#'
+#' # Merge all the Price series into one dataframe
+#' AllPrices <- do.call(merge, lapply(tickers, function(x) get(x)))
+#'
+#' #Import Data from .RData file - this was the data from google
+#' # If you try and download from google now this is the warning:
+#' # "Error: 'getSymbols.google' is defunct.
+#' # Google Finance stopped providing data in March, 2018."
+#' # New Issue: https://github.com/joshuaulrich/quantmod/issues/221
+#' #load("Water-Energy.Rdata")
+#'
+#Some of these series have (NA) missing values for dates when others
+#' # do not have missiong vaulesin the series so we interpolate for these values
+#' AllPrices$CGW.Close <- interpNA(AllPrices$CGW.Close)
+#' AllPrices$XLE.Close <- interpNA(AllPrices$XLE.Close)
+#' AllPrices$SPY.Close <- interpNA(AllPrices$SPY.Close)
+#'
+#' #Set up the correct data frame for prices
+#' CGW <- as.data.frame((AllPrices$CGW.Close))
+#' XLE <- as.data.frame((AllPrices$XLE.Close))
+#' SPY <- as.data.frame((AllPrices$SPY.Close))
+#'
+#' #Retrieve specific dates for this time frame (prices)
+#' date1 <- index(AllPrices)
+#'
+# Set Up Data Frame Prices
+#'
+#' Data <- cbind(CGW[,1], XLE[,1], SPY[,1])
+#'
+# WaveL2E Analysis of Prices
+#'
+#' periodic_waveL2E <- WaveL2E(Data[,1], date = date1, block = 1)
+#' periodic_waveL2E_2 <- WaveL2E(Data[,2], date= date1, block = 1)
+#' periodic_waveL2E_3 <- WaveL2E(Data[,3], date= date1, block = 1)
+#'
+#Set up the correct data frame for returns
+#' rCGW <- as.data.frame(returns(AllPrices$CGW.Close))
+#' rXLE <- as.data.frame(returns(AllPrices$XLE.Close))
+#' rSPY <- as.data.frame(returns(AllPrices$SPY.Close))
+#'
+#' #Retrieve specific dates for this time frame
+#' date1 <- index(AllPrices)
+#'
+# Set Up Data Frame Returns
+#'
+#' Data <- cbind(rCGW[-1,1], rXLE[-1,1], rSPY[-1,1])
+#'
+# WaveL2E Analysis of Returns
+#'
+#' periodic_waveL2E_R <- WaveL2E(Data[,1], date = date1[-1], block = 1)
+#' periodic_waveL2E_2_R <- WaveL2E(Data[,2], date= date1[-1], block = 1)
+#' periodic_waveL2E_3_R <- WaveL2E(Data[,3], date= date1[-1], block = 1)
+#'
+#' }
+#'
+#'
 WaveL2E <- function(x, date = NULL, block = 1, base_plot = TRUE,
                     L2E = TRUE,
                     Chi_square = TRUE)

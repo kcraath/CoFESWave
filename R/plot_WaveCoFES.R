@@ -12,8 +12,34 @@
 #'
 #' @author CoFES. Credits are also due to L. Aguiar-Conraria and M.J. Soares.
 #'
-#' @examples
-#' ## more work
+#' @examples \dontrun{
+#' ## The following example is adopted from Raath et al., 2020:
+#'
+#' ## Please first run the examples in the WaveL2E, CoFEScoherency and CoFESmpcoherency functions.
+#'
+#' # ----- Computation of coherency -----
+#' WCO<-CoFEScoherency(Data[,1],Data[,2],low.period=low.period,up.period=up.period,
+#' low.fp = lowFP1,up.fp = upFP1, Phase_diff = TRUE, date = date1)
+#'
+#' # -------- PLOTS  ----------
+#' plot_CoFESWaveWCO(WCO,pE=5, horizons.label = FALSE)
+#'
+#'
+#' # ----- Computation of Partial Coherency of Water , Energy (controlling for SPY) ---- #
+#'
+#' index.p=2
+#' Data_thresh <- cbind(periodic_waveL2E_2$recon_L2E$series$x.r,
+#'                      periodic_waveL2E$recon_L2E$series$x.r,
+#'                      periodic_waveL2E_3$recon_L2E$series$x.r)
+#' X<-matrix(Data_thresh,T,3)
+#' W<-CoFESmpcoherency(X, coher.type='part',index.p=index.p,
+#'                     low.period=low.period,up.period=up.period,
+#'                     low.fp = lowFP1,up.fp = upFP1, Phase_diff = TRUE, date = date1)
+#'
+#' plot_CoFESWaveWCO(W,pE=5)
+#' }
+#'
+#'
 plot_CoFESWaveWCO <- function(Coherency.Object,
                               pE=5,
                               horizons.label = TRUE,
@@ -39,6 +65,7 @@ plot_CoFESWaveWCO <- function(Coherency.Object,
   periods <- Coherency.Object$periods
   coi <- Coherency.Object$coi
   phaseDif <- Coherency.Object$phase.dif
+  isig1 <- Coherency.Object$isig1
 
   if (name_class == "CoFEScoherency") {
     data.toplot <- Coherency.Object$rwco
@@ -135,6 +162,7 @@ plot_CoFESWaveWCO <- function(Coherency.Object,
                           ytop= c(-pi/2,0,pi/2,pi),
                           col=c('gray50', '#8E93CB','#C9CAE6','#E2F6F5','#9EE5DF'),
                           border=NA))
+  points(isig1,phaseDif[isig1],col="darkred",lwd=4)
   axis(side=1, at=date_at, lab=date_lab, las=2)
   axis(side=2, at=freq_at, lab=freq_lab, las=1)
   grid()

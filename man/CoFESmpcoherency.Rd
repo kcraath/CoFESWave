@@ -170,7 +170,25 @@ The major part of the code has been adopted from L. Aguiar-Conraria and M.J. Soa
 CoFESmpcoherency
 }
 \examples{
-## more work
+\dontrun{
+## The following example is adopted from Raath et al., 2020:
+
+## Please first run the examples in the WaveL2E and CoFEScoherency functions.
+
+# ----- Computation of Partial Coherency of Water , Energy (controlling for SPY) ---- #
+
+index.p=2
+Data_thresh <- cbind(periodic_waveL2E_2$recon_L2E$series$x.r,
+                     periodic_waveL2E$recon_L2E$series$x.r,
+                     periodic_waveL2E_3$recon_L2E$series$x.r)
+X<-matrix(Data_thresh,T,3)
+W<-CoFESmpcoherency(X, coher.type='part',index.p=index.p,
+                    low.period=low.period,up.period=up.period,
+                    low.fp = lowFP1,up.fp = upFP1, Phase_diff = TRUE, date = date1)
+
+plot_CoFESWaveWCO(W,pE=5)
+}
+
 }
 \references{
 Aguiar-Conraria, L. and Soares, M.J. (2010)

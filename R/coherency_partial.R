@@ -132,8 +132,25 @@
 #' "A Prectical Guide to Wavelet Analysis" (1998),
 #' Bulletin of the American Meteorological Society, 79, 605.618.
 #'
-#' @examples
-#' ## more work
+#' @examples \dontrun{
+#' ## The following example is adopted from Raath et al., 2020:
+#'
+#' ## Please first run the examples in the WaveL2E and CoFEScoherency functions.
+#'
+#' # ----- Computation of Partial Coherency of Water , Energy (controlling for SPY) ---- #
+#'
+#' index.p=2
+#' Data_thresh <- cbind(periodic_waveL2E_2$recon_L2E$series$x.r,
+#'                      periodic_waveL2E$recon_L2E$series$x.r,
+#'                      periodic_waveL2E_3$recon_L2E$series$x.r)
+#' X<-matrix(Data_thresh,T,3)
+#' W<-CoFESmpcoherency(X, coher.type='part',index.p=index.p,
+#'                     low.period=low.period,up.period=up.period,
+#'                     low.fp = lowFP1,up.fp = upFP1, Phase_diff = TRUE, date = date1)
+#'
+#' plot_CoFESWaveWCO(W,pE=5)
+#' }
+#'
 CoFESmpcoherency <- function(X,
                              dt=1,dj=0.25,
                              low.period=2*dt,up.period=nrow(X)*dt,
@@ -517,6 +534,13 @@ CoFESmpcoherency <- function(X,
     selPeriods<-((periods >= low.fp) & (periods <= up.fp))
     # Indexes of selected periods
 
+    if (n.sur>0) {
+      min.prob <- apply(pvMP[selPeriods,],2,min)
+      sig1 <- as.numeric(min.prob<0.05)
+      isig1 <- which(sig1==1)
+    }
+    # code added
+
     average.wpco <- as.vector(t(rowMeans(rwpco)))  # Average Wavelet Coherency
     # (i.e. time-average over all times)
     # Computation of phase.dif (output)
@@ -552,7 +576,8 @@ CoFESmpcoherency <- function(X,
     output <- c(output,
                 list(phase.dif=phase.dif,
                      time.lag=time.lag,
-                     average.wpco=average.wpco))
+                     average.wpco=average.wpco,
+                     isig1 = isig1))
   }
 
   if (!is.null(date)) {

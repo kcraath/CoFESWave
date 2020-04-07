@@ -127,19 +127,44 @@
 #' Bulletin of the American Meteorological Society, 79, 605.618.
 #'
 #' @name CoFEScoherency
-#' @examples
-#' ## more work
-CoFEScoherency <- function(x,y,
-                           dt=1,dj=0.25,
-                           low.period=2*dt,up.period=length(x)*dt,
-                           pad=0,sigma=1,
-                           wt.type=0,wt.size=5,
-                           ws.type=0,ws.size=5,
-                           n.sur=0,
-                           p=0,q=0,
-                           Phase_diff = FALSE,
-                           low.fp = 32,up.fp = 128,
-                           date = NULL)
+#' @examples \dontrun{
+#' ## The following example is adopted from Raath et al., 2020:
+#'
+#' ## Please first run the example in the WaveL2E function.
+#' ############### Figure 8 ####################
+#'
+#' Data <- cbind(CGW[,1], XLE[,1], SPY[,1])
+#'
+#' # ----- Create matrix with columns ETF columns  ----- #
+#' T <- length(CGW[,1])
+#' X<-matrix(Data,T,3)
+#'
+#' # -----  Choice of wavelet parameters  ------ #
+#' low.period<-1
+#' up.period<-512
+#'
+#' # -----   Choice of smoothing parameters for coherency ---- #
+#' wt.type ='ham'
+#' wt.size =3
+#' ws.type ='ham'
+#' ws.size =3
+#'
+#' # Computation of coherency
+#' # WCO<-CoFEScoherency(Data[,1],Data[,2],low.period=low.period,up.period=up.period,
+#'                       low.fp = 32,up.fp = 128)
+#'
+#' # --- Lower and upper  periods (mid regime)
+#' lowFP1<-32
+#' upFP1<-128
+#'
+#' WCO<-CoFEScoherency(Data[,1],Data[,2],low.period=low.period,up.period=up.period,
+#'                     low.fp = lowFP1,up.fp = upFP1, Phase_diff = TRUE, date = date1)
+#'
+#' }
+#'
+CoFEScoherency <- function(x,y,dt=1,dj=0.25,low.period=2*dt,up.period=length(x)*dt,pad=0,sigma=1,
+                           wt.type=0,wt.size=5,ws.type=0,ws.size=5,n.sur=0,p=0,q=0,Phase_diff = FALSE,
+                           low.fp = 32,up.fp = 128,date = NULL)
 {
   # make test and debug easier.
   # x = rCGW[,1];y = rXLE[,1];
@@ -470,6 +495,15 @@ CoFEScoherency <- function(x,y,
     selPeriods<-((periods >= low.fp) & (periods <= up.fp))
     # Indexes of selected periods
 
+    if (n.sur>0) {
+      min.prob <- apply(pvCo[selPeriods,],2,min)
+      sig1 <- as.numeric(min.prob<0.05)
+      isig1 <- which(sig1==1)
+    } else {
+      isig1 <- NULL
+    }
+    # code added
+
     average.coer <- as.vector(t(rowMeans(rwco)))  # Average Wavelet Coherency
     # (i.e. time-average over all times)
     # Computation of phase.dif (output)
@@ -502,7 +536,7 @@ CoFEScoherency <- function(x,y,
 
   if (n.sur>0){
     output<-c(output,
-              list(pv=pvCo) )
+              list(pvCo=pvCo) )
   }
 
   if (Phase_diff){
@@ -510,7 +544,8 @@ CoFEScoherency <- function(x,y,
               list(phase.dif=phase.dif,
                    time.lag=time.lag,
                    average.coer=average.coer,
-                   average.cross=average.cross) )
+                   average.cross=average.cross,
+                   isig1 = isig1) )
   }
 
   if (!is.null(date)) {

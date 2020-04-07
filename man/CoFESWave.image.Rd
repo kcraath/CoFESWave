@@ -314,6 +314,33 @@ CoFESWave.image
 }
 \examples{
 \dontrun{
+## The following example is adopted from Raath et al., 2020:
+
+## Please first run the example in the WaveL2E function.
+######## Figure 1 ##########
+
+CoFESWave.image(periodic_waveL2E$original, periodlab = " ",timelab = "  " , main = " ",
+                legend.params = list(lab = "wavelet power levels", mar = 5.1, cex = 4, n.ticks = 5),
+                color.key = "quantile", lwd = 2, plot.ridge = FALSE,
+                color.palette = "topl_colors(n.levels)")
+
+CoFESWave.image(periodic_waveL2E_2$original, periodlab = " ",timelab = "  " , main = " ",
+                legend.params = list(lab = "wavelet power levels", mar = 5.1, cex = 4, n.ticks = 5),
+                color.key = "quantile", lwd = 2, plot.ridge = FALSE,
+                color.palette = "topl_colors(n.levels)")
+
+CoFESWave.image(periodic_waveL2E_R$original, periodlab = " ",timelab = "  " , main = " ",
+                legend.params = list(lab = "wavelet power levels", mar = 5.1, cex = 4, n.ticks = 5),
+                color.key = "quantile", lwd = 2, plot.ridge = FALSE,
+                color.palette = "topl_colors(n.levels)")
+
+CoFESWave.image(periodic_waveL2E_2_R$original, periodlab = " ",timelab = "  " , main = " ",
+                legend.params = list(lab = "wavelet power levels", mar = 5.1, cex = 4, n.ticks = 5),
+                color.key = "quantile", lwd = 2, plot.ridge = FALSE,
+                color.palette = "topl_colors(n.levels)")
+
+
+
 ## The following example is adopted from Liu et al., 2007:
 
 series.length <- 6*128*24
