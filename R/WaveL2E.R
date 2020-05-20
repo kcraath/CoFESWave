@@ -306,6 +306,7 @@ WaveL2E <- function(x, date = NULL, block = 1, base_plot = TRUE,
     return( list( sig=sig, w=w, izero=izero, thresh=thresh,
                   dis0=dis0, qthresh = qthresh, qizero = qizero) )
   }
+
   ### End of 1. Function for WaveL2E ###
 
 
@@ -397,8 +398,10 @@ WaveL2E <- function(x, date = NULL, block = 1, base_plot = TRUE,
   ########## Change ##############
   # Empirical WaveL2E + MAD
   # This is temporary we need to fix the code so we do evaluate block0 not disgard
-  sig <- zerofill(sig)
-  w <- zerofill(w)
+  # sig <- zerofill(sig)
+  # w <- zerofill(w)
+  sig[is.na(sig)] <- 0
+  w[is.na(w)] <- 0
   signal_recovered_mad <- (x - mad(w)*rnorm(n = 1, mean = 0, sd = mad(sig)))/(1-mad(w))
   signal_recovered_mad <- (x - mad(w,na.rm = TRUE)*rnorm(n = 1, mean = 0, sd = mad(sig,na.rm = TRUE)))/(1-mad(w,na.rm = TRUE))
 
